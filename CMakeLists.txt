@@ -14,6 +14,8 @@ set(GLEW_SRC
 	${GLEW_DIR}/src/glew.c
 )
 
+source_group("" FILES ${GLEW_HEAD} ${GLEW_SRC})
+
 add_definitions(-DGLEW_STATIC)
 add_library (glew STATIC ${GLEW_SRC} ${GLEW_HEAD})
 #target_link_libraries (glew ${GLEW_LIBRARIES})
