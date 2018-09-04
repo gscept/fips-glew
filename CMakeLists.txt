@@ -9,10 +9,10 @@ include("${FIPS_ROOT_DIR}/cmake/fips.cmake")
 
 fips_setup()
 fips_project(fips-glew)
-
 fips_begin_lib(glew)
-fips_include_directories(../fips-glew/glew)
-fips_src(glew/ NO_RECURSE)
+    add_definitions(-DGLEW_STATIC)
+    find_package (OpenGL REQUIRED)
+    include_directories (${GLEW_DIR}/include)
+    fips_src(glew/src NO_RECURSE)
 fips_end_lib()
-
 fips_finish()
