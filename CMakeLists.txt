@@ -11,8 +11,8 @@ fips_setup()
 fips_project(fips-glew)
 
 fips_begin_lib(glew)
-fips_include_directories(../fips-glew/glew)
-fips_src(glew/ NO_RECURSE)
+fips_include_directories(../fips-glew/glew/include)
+fips_src(glew/src NO_RECURSE)
 fips_end_lib()
 
 fips_finish()
