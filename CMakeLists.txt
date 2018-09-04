@@ -1,21 +1,18 @@
-project (glew)
+#
+# project: fips-glew
+#
+cmake_minimum_required(VERSION 2.8)
 
-set (GLEW_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-find_package (OpenGL REQUIRED)
-set (GLEW_LIBRARIES ${OPENGL_LIBRARIES})
-include_directories (${GLEW_DIR}/include)
+# include the fips main cmake file
+get_filename_component(FIPS_ROOT_DIR "../fips" ABSOLUTE)
+include("${FIPS_ROOT_DIR}/cmake/fips.cmake")
 
-set(GLEW_HEAD 
-	${GLEW_DIR}/include/GL/glew.h
-	${GLEW_DIR}/include/GL/wglew.h
-	${GLEW_DIR}/include/GL/glxew.h)
+fips_setup()
+fips_project(fips-glew)
 
-set(GLEW_SRC
-	${GLEW_DIR}/src/glew.c
-)
+fips_begin_lib(glew)
+fips_include_directories(../fips-glew/glew)
+fips_src(glew/ NO_RECURSE)
+fips_end_lib()
 
-source_group("" FILES ${GLEW_HEAD} ${GLEW_SRC})
-
-add_definitions(-DGLEW_STATIC)
-add_library (glew STATIC ${GLEW_SRC} ${GLEW_HEAD})
-#target_link_libraries (glew ${GLEW_LIBRARIES})
+fips_finish()
